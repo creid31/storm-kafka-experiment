@@ -11,7 +11,6 @@ import org.apache.storm.topology.IRichBolt;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
-import org.apache.storm.tuple.Values;
 
 /**
  * ExclaimationBolt adds exclaimation marks to the phrase sent to it via MasterBolt
@@ -38,7 +37,6 @@ public class ExclamationMarkBolt implements IRichBolt {
         String phrase = tuple.getStringByField("phrase");
         System.out.println("ExclamationMarkBolt received" + phrase);
         String new_phrase = phrase + "!!!";
-        collector.emit(new Values(new_phrase));
         System.out.println("Emitted" + new_phrase);
         collector.ack(tuple);
     }

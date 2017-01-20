@@ -42,13 +42,14 @@ public class MasterBolt implements IRichBolt {
         String phrase = input.getString(0);
         String[] words = phrase.split(" ");
         ArrayList<String> comparisonWords = new ArrayList<String>(Arrays.asList(new String[] {
-                "Are", "Where", "What", "How", "Where"
+                "Are", "When", "What", "How", "Where"
         }));
         if(comparisonWords.contains(words[0])){
-            collector.emit(Topology.QUESTIONSTREAM, new Values("question", phrase));
+            collector.emit(Topology.QUESTIONSTREAM, input, new Values("question", phrase));
         } else {
-            collector.emit(Topology.EXCLAIMSTREAM, new Values("delaration", phrase));
+            collector.emit(Topology.EXCLAIMSTREAM, input, new Values("delaration", phrase));
         }
+        collector.ack(input);
     }
 
     /* (non-Javadoc)

@@ -4,7 +4,7 @@
 package com.cecili.storm;
 
 import org.apache.storm.Config;
-import org.apache.storm.LocalCluster;
+import org.apache.storm.StormSubmitter;
 import org.apache.storm.kafka.KafkaSpout;
 import org.apache.storm.topology.TopologyBuilder;
 
@@ -51,11 +51,12 @@ public class Topology {
 
         Config conf = new Config();
         conf.setNumWorkers(1);
+        conf.put(Config.TOPOLOGY_STATS_SAMPLE_RATE, 1.00);
 
         // Run in localmode without UI
-        LocalCluster cluster = new LocalCluster();
-        cluster.submitTopology("storm-kafka-topology-test", conf, builder.createTopology());
-        // StormSubmitter.submitTopology("storm-kafka-topology-test", conf, builder.createTopology());
+        // LocalCluster cluster = new LocalCluster();
+        // cluster.submitTopology("storm-kafka-topology-test", conf, builder.createTopology());
+        StormSubmitter.submitTopology("storm-kafka-topology-test", conf, builder.createTopology());
     }
 
     public static void main(String[] args) throws Exception {

@@ -11,7 +11,6 @@ import org.apache.storm.topology.IRichBolt;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
-import org.apache.storm.tuple.Values;
 
 /**
  * This bolts adds question marks to phrases streamed to it from MasterBolt
@@ -38,7 +37,6 @@ public class QuestionMarkBolt implements IRichBolt {
         String phrase = tuple.getStringByField("phrase");
         System.out.println("QuestionMarkBolt received" + phrase);
         String new_phrase = phrase + "???";
-        collector.emit(new Values(new_phrase));
         System.out.println("Emitted" + new_phrase);
         collector.ack(tuple);
     }
