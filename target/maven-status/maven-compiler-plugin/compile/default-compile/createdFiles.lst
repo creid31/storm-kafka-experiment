@@ -1,5 +1,0 @@
-com/cecili/storm/bolt/ExclamationMarkBolt.class
-com/cecili/storm/bolt/QuestionMarkBolt.class
-com/cecili/storm/Topology.class
-com/cecili/storm/bolt/MasterBolt.class
-com/cecili/storm/SpoutBuilder.class
